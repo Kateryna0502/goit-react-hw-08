@@ -3,7 +3,7 @@ import css from "./Contact.module.css";
 import { FaUserAlt } from "react-icons/fa";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps.js";
+import { deleteContact } from "../../redux/contacts/operations";
 
 const Contact = ({
   id,
