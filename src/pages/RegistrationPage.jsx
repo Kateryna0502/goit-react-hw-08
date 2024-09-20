@@ -31,6 +31,7 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = (values) => {
+    console.log(value);
     dispatch(apiRegister(values));
   };
 
