@@ -7,8 +7,9 @@ import { addContact, deleteContact, fetchContacts } from "./operations";
 // export const selectError = (state) => state.contacts.error;
 
 const INITIAL_STATE = {
-items: [],
-name: "",
+  contacts: [],
+  // items: [],
+// name: "",
 loading: false,
 error: null,
 };
@@ -24,7 +25,8 @@ error: null,
 
 const contactsSlice = createSlice({
     name: "contacts",
-    initialState: INITIAL_STATE,
+  initialState: INITIAL_STATE,
+    reducers: {},
     extraReducers: (builder) =>
     builder
       .addCase(fetchContacts.pending, (state) => {
@@ -33,7 +35,7 @@ const contactsSlice = createSlice({
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.contacts = action.payload;
       })
       .addCase(fetchContacts.rejected, (state, action) => {
         state.loading = false;
@@ -45,7 +47,7 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = state.items.filter(
+        state.contacts = state.contacts.filter(
           (contact) => contact.id!== action.payload.id
         );
       })
@@ -59,7 +61,7 @@ const contactsSlice = createSlice({
       })
       .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(action.payload);
+        state.contacts.push(action.payload);
       })
       .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
@@ -67,5 +69,5 @@ const contactsSlice = createSlice({
       }),
 });
 
-export default contactsSlice.reducer;
+
 export const contactsReducer = contactsSlice.reducer;
