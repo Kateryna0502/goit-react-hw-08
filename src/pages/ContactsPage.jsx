@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../redux/contacts/operations';
 import { selectLoading, selectError } from '../redux/contacts/selectors';
@@ -6,7 +6,6 @@ import ContactList from '../components/ContactList/ContactList';
 import ContactForm from '../components/ContactForm/ContactForm';
 import SearchBox from '../components/SearchBox/SearchBox';
 import toast, { Toaster } from 'react-hot-toast';
-// import { addContact } from '../redux/contacts/operations';
 import Loader from '../components/Loader/Loader';
 
 function ContactsPage() {
@@ -34,7 +33,7 @@ function ContactsPage() {
         <p style={{ color: "red" }}>{error}. Please, try again later.</p>
       )}
       <Toaster />
-      <ContactForm />
+      
       <SearchBox />
 
       <ContactList />
@@ -43,10 +42,4 @@ function ContactsPage() {
   );
 }
       
-//       <SearchBox /> 
-//     <ContactList />
-//   </div>
-// );
-// }
-
 export default ContactsPage;
