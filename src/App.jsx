@@ -3,22 +3,23 @@ import { useEffect, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout } from "./components/Layout/Layout";
 import { Route, Routes } from "react-router-dom";
-import { refreshUser } from "./redux/auth/operations";
+import { apiRefreshUser } from "./redux/auth/operations";
 import { selectAuthIsRefreshing } from "./redux/auth/selectors";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 
-const HomePage = lazy(() => import("../src/pages/HomePage/HomePage"));
-const RegistrationPage = lazy(() => import("../src/pages/RegistrationPage "));
-const LoginPage = lazy(() => import("../src/pages/LoginPage "));
-const ContactsPage = lazy(() => import("../src/pages/ContactsPage"));
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ContactsPage = lazy(() => import("./pages/ContactsPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegistrationPage = lazy(() => import("./pages/RegistrationPage"));
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectAuthIsRefreshing);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(apiRefreshUser());
   }, [dispatch]);
 
   // const onLogout = () => {

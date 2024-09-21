@@ -4,7 +4,7 @@ import css from "./ContactForm.module.css"
 import { useDispatch } from "react-redux";
 
 import { addContact } from "../../redux/contacts/operations";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 
 
 
@@ -24,30 +24,50 @@ const ContactValidationSchema = Yup.object().shape({
     
 });
 
-const INITIAL_VALUES = {
-  name: "",
-  number: "",
+// const INITIAL_VALUES = {
+//   name: "",
+//   number: "",
   
-};
+// };
 
-const ContactForm = ({ onAddContact }) => {
-  // const dispatch = useDispatch();
-const handleSubmit = (values, actions) => {
-  const contactObject = {
-      name: values.name,
-      number: values.number,
-    };
+// const onAddContact = (contact) => {
+//     dispatch(addContact(contact))
+//       .unwrap()
+//       .then(() => {
+//         toast.success("Contact added successfully🎉");
+//       });
+//   };
 
-    onAddContact(contactObject);
+// const ContactForm = ({ onAddContact }) => {
+//   // const dispatch = useDispatch();
+// const handleSubmit = (values, actions) => {
+//   const contactObject = {
+//       name: values.name,
+//       number: values.number,
+//     };
 
-    console.log(values);
+//     onAddContact(contactObject);
+
+//     console.log(values);
+//     actions.resetForm();
+// };
+
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const initialValues = {
+    name: "",
+    number: "",
+  };
+
+  const onAddContact = (contact, actions) => {
+    dispatch(addContact(contact));
     actions.resetForm();
-};
+  };
 
   return (
     <Formik
-      initialValues={INITIAL_VALUES}
-      onSubmit={handleSubmit}
+      initialValues={initialValues}
+      onSubmit={onAddContact}
       validationSchema={ContactValidationSchema}
     >
       {({ errors }) => (

@@ -5,8 +5,9 @@ import { selectContacts, selectLoading, selectError } from '../../redux/contacts
 import ContactList from '../../components/ContactList/ContactList';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import SearchBox from '../../components/SearchBox/SearchBox';
-import toast from 'react-hot-toast';
-import { addContact, deleteContact } from '../redux/contacts/operations';
+import toast, { Toaster } from 'react-hot-toast';
+import { addContact } from '../redux/contacts/operations';
+import Loader from '../components/Loader/Loader';
 
 function ContactsPage() {
   const dispatch = useDispatch();
@@ -21,21 +22,9 @@ function ContactsPage() {
       });
   }, [dispatch]);
 
-  const onAddContact = (contact) => {
-    dispatch(addContact(contact))
-      .unwrap()
-      .then(() => {
-        toast.success("Contact added successfully🎉");
-      });
-  };
+  
 
-  const onDeleteContact = (contactId) => {
-    dispatch(deleteContact(contactId))
-      .unwrap()
-      .then(() => {
-        toast.success("Contact deleted successfully🎉");
-      });
-  };
+  
 
 
   return (
@@ -44,11 +33,26 @@ function ContactsPage() {
     
     <ContactForm onAddContact={onAddContact} />
     {loading && <Loader />}
-      {error && <p>{error}</p>}
-      <SearchBox /> 
-    <ContactList />
-  </div>
-);
+      {error !== null && (
+        <p style={{ color: "red" }}>{error}. Please, try again later.</p>
+      )}
+      <Toaster />
+      <ContactForm />
+      <SearchBox />
+
+      {contacts.length > 0 ? (
+        <ContactList />
+      ) : (
+        <p>You don&apos;t have contacts yet!</p>
+      )}
+    </div>
+  );
 }
+      
+//       <SearchBox /> 
+//     <ContactList />
+//   </div>
+// );
+// }
 
 export default ContactsPage;
