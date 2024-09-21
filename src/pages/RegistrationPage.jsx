@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-import css from "../components/SearchPostsForm/SearchPostsForm.module.css";
+import css from "../components/ContactForm/ContactForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { apiRegister } from "../redux/auth/operations";
 import { selectAuthError } from "../redux/auth/selectors";
@@ -31,7 +31,7 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log(value);
+    // console.log(value);
     dispatch(apiRegister(values));
   };
 
