@@ -108,26 +108,6 @@ const ContactForm = () => {
 
 export default ContactForm;
 
-  // const onAddContact = (contact, actions) => {
-  //   const finalContact = {
-  //     ...contact,
-  //     id: nanoid(),
-  //   };
-
-    // setUsers([finalContact, ...users]);
-  //   dispatch(addContact(finalContact));
-
-  //   actions.resetForm();
-  // };
-
-    
-  // const handleSubmit = (values, actions) => {
-  //   dispatch(
-  //     addProfile({
-  //       name: values.contactName,
-  //       number: values.contactNumber,
-      
-  //     })
-    
+  
 
   
