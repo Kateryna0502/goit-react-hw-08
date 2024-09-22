@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from "./operations";
+import { apiLogout } from "../auth/operations";
 // import { selectNameFilter } from "./filtersSlice";
 
 // export const selectContacts = (state) => state.contacts.items;
@@ -66,6 +67,11 @@ const contactsSlice = createSlice({
       .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+    .addCase(apiLogout.fulfilled, (state) => {
+        state.contacts = [];
+        state.error = null;
+        state.loading = false;
       }),
 });
 
